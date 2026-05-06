@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ingredients of Things</title>
+
+  <style>
+    :root {
+      --bg: #f5f3ea;
+      --text: #111111;
+      --muted: #5f5f5f;
+      --yellow: #f2d600;
+      --border: #111111;
+      --white: #fffaf0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      border-bottom: 4px solid var(--text);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      margin-left: 28px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    .hero {
+      padding: 80px 40px 60px;
+      max-width: 1200px;
+    }
+
+    .hero h1 {
+      font-size: clamp(56px, 10vw, 140px);
+      line-height: 0.9;
+      letter-spacing: -5px;
+      text-transform: uppercase;
+      max-width: 1050px;
+    }
+
+    .yellow-line {
+      width: 55%;
+      height: 12px;
+      background: var(--yellow);
+      margin: 28px 0;
+    }
+
+    .hero p {
+      max-width: 720px;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .buttons {
+      margin-top: 34px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 24px;
+      border: 3px solid var(--text);
+      background: var(--yellow);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 900;
+      text-transform: uppercase;
+      box-shadow: 6px 6px 0 var(--text);
+    }
+
+    .btn.secondary {
+      background: transparent;
+    }
+
+    section {
+      padding: 60px 40px;
+    }
+
+    .section-title {
+      font-size: clamp(38px, 6vw, 72px);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+      margin-bottom: 30px;
+    }
+
+    .carousel {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(260px, 1fr);
+      gap: 28px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+    }
+
+    .card {
+      min-height: 330px;
+      background: var(--white);
+      border: 4px solid var(--text);
+      padding: 28px;
+      box-shadow: 10px 10px 0 var(--text);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .number {
+      font-size: 72px;
+      font-weight: 900;
+      color: var(--yellow);
+      -webkit-text-stroke: 2px var(--text);
+      line-height: 1;
+    }
+
+    .card h3 {
+      font-size: 28px;
+      text-transform: uppercase;
+      margin: 18px 0 10px;
+      line-height: 1;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .card a {
+      margin-top: 24px;
+      color: var(--text);
+      font-weight: 900;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 4px solid var(--yellow);
+      width: fit-content;
+    }
+
+    .philosophy {
+      background: var(--text);
+      color: var(--bg);
+      padding: 70px 40px;
+    }
+
+    .philosophy h2 {
+      font-size: clamp(42px, 7vw, 96px);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -3px;
+      max-width: 900px;
+    }
+
+    .philosophy p {
+      margin-top: 28px;
+      max-width: 800px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #d8d8d8;
+    }
+
+    .ingredient-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .ingredient {
+      border: 3px solid var(--text);
+      background: var(--yellow);
+      padding: 22px;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 22px;
+      box-shadow: 6px 6px 0 var(--text);
+    }
+
+    .advertise {
+      border-top: 4px solid var(--text);
+      border-bottom: 4px solid var(--text);
+      background: var(--white);
+    }
+
+    .advertise p {
+      max-width: 720px;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    footer {
+      padding: 36px 40px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    footer a {
+      color: var(--text);
+      text-decoration: none;
+      margin-left: 18px;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 16px 20px;
+        align-items: flex-start;
+        gap: 18px;
+        flex-direction: column;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 16px;
+        display: inline-block;
+        margin-bottom: 8px;
+      }
+
+      .hero,
+      section,
+      .philosophy {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero p,
+      .philosophy p {
+        font-size: 20px;
+      }
+
+      .yellow-line {
+        width: 85%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">Ingredients of Things</div>
+
+    <nav>
+      <a href="/fruits">Fruits</a>
+      <a href="/ingredients">Ingredients</a>
+      <a href="/advertise">Advertise With Us</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <h1>Everything is made of ingredients.</h1>
+      <div class="yellow-line"></div>
+      <p>
+        Simple, calm explanations for the ingredients inside everyday foods,
+        fruits, drinks, and products.
+      </p>
+
+      <div class="buttons">
+        <a class="btn" href="/fruits">Explore Fruits</a>
+        <a class="btn secondary" href="/ingredients">Browse Ingredients</a>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Start With The Basics</h2>
+
+      <div class="carousel">
+        <article class="card">
+          <div>
+            <div class="number">01</div>
+            <h3>Banana</h3>
+            <p>Water, natural sugars, fiber, potassium, vitamins, and aroma compounds.</p>
+          </div>
+          <a href="/fruit/banana">View Ingredients</a>
+        </article>
+
+        <article class="card">
+          <div>
+            <div class="number">02</div>
+            <h3>Apple</h3>
+            <p>Water, fructose, fiber, acids, antioxidants, and natural plant compounds.</p>
+          </div>
+          <a href="/fruit/apple">View Ingredients</a>
+        </article>
+
+        <article class="card">
+          <div>
+            <div class="number">03</div>
+            <h3>Coffee</h3>
+            <p>Caffeine, acids, oils, minerals, aroma compounds, and water.</p>
+          </div>
+          <a href="/food/coffee">View Ingredients</a>
+        </article>
+
+        <article class="card">
+          <div>
+            <div class="number">04</div>
+            <h3>Bread</h3>
+            <p>Flour, water, yeast, salt, starches, proteins, and fermentation compounds.</p>
+          </div>
+          <a href="/food/bread">View Ingredients</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="philosophy">
+      <h2>Chemical names are not automatically bad.</h2>
+      <p>
+        Everything is made of chemicals, including fruit, water, and our bodies.
+        Our goal is to explain ingredients with context, not fear.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Popular Ingredients</h2>
+
+      <div class="ingredient-grid">
+        <div class="ingredient">Glucose</div>
+        <div class="ingredient">Fructose</div>
+        <div class="ingredient">Citric Acid</div>
+        <div class="ingredient">Potassium</div>
+        <div class="ingredient">Caffeine</div>
+        <div class="ingredient">Fiber</div>
+      </div>
+    </section>
+
+    <section class="advertise" id="advertise">
+      <h2 class="section-title">Advertise With Us</h2>
+      <p>
+        Reach curious readers who want clear, trustworthy explanations about
+        everyday ingredients, foods, and products.
+      </p>
+      <a class="btn" href="mailto:hello@ingredientsofthings.com">Contact Us</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>© 2026 Ingredients of Things</div>
+
+    <div>
+      <a href="/about">About</a>
+      <a href="/sources">Sources</a>
+      <a href="/privacy">Privacy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
