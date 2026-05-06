@@ -7,12 +7,12 @@
 
   <style>
     :root {
-      --bg: #f5f3ea;
+      --bg: #f6f2e8;
+      --paper: #fffaf0;
       --text: #111111;
       --muted: #5f5f5f;
       --yellow: #f2d600;
-      --border: #111111;
-      --white: #fffaf0;
+      --line: #d8d1c3;
     }
 
     * {
@@ -32,18 +32,19 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: var(--bg);
-      border-bottom: 4px solid var(--text);
-      padding: 18px 40px;
+      background: rgba(246, 242, 232, 0.95);
+      border-bottom: 1px solid var(--line);
+      padding: 22px 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      backdrop-filter: blur(10px);
     }
 
     .logo {
       font-weight: 900;
-      font-size: 22px;
-      letter-spacing: -0.5px;
+      font-size: 20px;
+      letter-spacing: -0.4px;
       text-transform: uppercase;
     }
 
@@ -53,164 +54,234 @@
       text-decoration: none;
       font-weight: 800;
       text-transform: uppercase;
-      font-size: 14px;
+      font-size: 13px;
+      letter-spacing: 0.3px;
     }
 
     .hero {
-      padding: 80px 40px 60px;
-      max-width: 1200px;
+      padding: 90px 40px 70px;
+      max-width: 1180px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 22px;
+      padding: 8px 12px;
+      background: var(--yellow);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
     }
 
     .hero h1 {
-      font-size: clamp(56px, 10vw, 140px);
-      line-height: 0.9;
+      font-size: clamp(54px, 9vw, 128px);
+      line-height: 0.92;
       letter-spacing: -5px;
       text-transform: uppercase;
-      max-width: 1050px;
-    }
-
-    .yellow-line {
-      width: 55%;
-      height: 12px;
-      background: var(--yellow);
-      margin: 28px 0;
+      max-width: 1080px;
     }
 
     .hero p {
-      max-width: 720px;
+      margin-top: 28px;
+      max-width: 740px;
       font-size: 24px;
       font-weight: 700;
       color: var(--muted);
     }
 
     .buttons {
-      margin-top: 34px;
+      margin-top: 36px;
       display: flex;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
     .btn {
       display: inline-block;
-      padding: 16px 24px;
-      border: 3px solid var(--text);
-      background: var(--yellow);
-      color: var(--text);
+      padding: 15px 22px;
+      border: 2px solid var(--text);
+      background: var(--text);
+      color: var(--bg);
       text-decoration: none;
       font-weight: 900;
       text-transform: uppercase;
-      box-shadow: 6px 6px 0 var(--text);
+      font-size: 14px;
+      letter-spacing: 0.3px;
     }
 
     .btn.secondary {
       background: transparent;
+      color: var(--text);
     }
 
     section {
-      padding: 60px 40px;
+      padding: 70px 40px;
+    }
+
+    .section-label {
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--muted);
+      margin-bottom: 16px;
     }
 
     .section-title {
-      font-size: clamp(38px, 6vw, 72px);
-      line-height: 0.95;
+      font-size: clamp(42px, 6vw, 88px);
+      line-height: 0.98;
+      text-transform: uppercase;
+      letter-spacing: -3px;
+      max-width: 980px;
+      margin-bottom: 34px;
+    }
+
+    .principles {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .principle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .principle {
+      padding: 34px 32px;
+      border-right: 1px solid var(--line);
+      min-height: 270px;
+    }
+
+    .principle:last-child {
+      border-right: none;
+    }
+
+    .principle h3 {
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 0.96;
       text-transform: uppercase;
       letter-spacing: -2px;
-      margin-bottom: 30px;
+      margin-bottom: 22px;
+    }
+
+    .principle h3 span {
+      background: linear-gradient(transparent 58%, var(--yellow) 58%);
+    }
+
+    .principle p {
+      font-size: 19px;
+      font-weight: 650;
+      color: var(--muted);
+      max-width: 360px;
     }
 
     .carousel {
       display: grid;
       grid-auto-flow: column;
-      grid-auto-columns: minmax(260px, 1fr);
-      gap: 28px;
+      grid-auto-columns: minmax(280px, 360px);
+      gap: 22px;
       overflow-x: auto;
-      padding-bottom: 20px;
+      padding: 8px 0 24px;
     }
 
     .card {
-      min-height: 330px;
-      background: var(--white);
-      border: 4px solid var(--text);
+      min-height: 310px;
+      background: var(--paper);
+      border: 1px solid var(--line);
       padding: 28px;
-      box-shadow: 10px 10px 0 var(--text);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .number {
-      font-size: 72px;
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--text);
+    }
+
+    .tag {
+      width: fit-content;
+      background: var(--yellow);
+      padding: 5px 9px;
+      font-size: 12px;
       font-weight: 900;
-      color: var(--yellow);
-      -webkit-text-stroke: 2px var(--text);
-      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 18px;
     }
 
     .card h3 {
-      font-size: 28px;
+      font-size: 34px;
       text-transform: uppercase;
-      margin: 18px 0 10px;
-      line-height: 1;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
     }
 
     .card p {
       color: var(--muted);
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 650;
     }
 
     .card a {
-      margin-top: 24px;
+      margin-top: 26px;
       color: var(--text);
       font-weight: 900;
       text-transform: uppercase;
       text-decoration: none;
-      border-bottom: 4px solid var(--yellow);
+      border-bottom: 5px solid var(--yellow);
       width: fit-content;
     }
 
     .philosophy {
       background: var(--text);
       color: var(--bg);
-      padding: 70px 40px;
     }
 
     .philosophy h2 {
-      font-size: clamp(42px, 7vw, 96px);
-      line-height: 0.95;
+      font-size: clamp(44px, 7vw, 100px);
+      line-height: 0.96;
       text-transform: uppercase;
       letter-spacing: -3px;
-      max-width: 900px;
+      max-width: 980px;
     }
 
     .philosophy p {
       margin-top: 28px;
-      max-width: 800px;
+      max-width: 820px;
       font-size: 24px;
       font-weight: 700;
-      color: #d8d8d8;
+      color: #ded8cc;
     }
 
     .ingredient-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      gap: 14px;
     }
 
     .ingredient {
-      border: 3px solid var(--text);
-      background: var(--yellow);
+      border: 1px solid var(--line);
+      background: var(--paper);
       padding: 22px;
       font-weight: 900;
       text-transform: uppercase;
       font-size: 22px;
-      box-shadow: 6px 6px 0 var(--text);
+    }
+
+    .ingredient:hover {
+      background: var(--yellow);
+      border-color: var(--text);
     }
 
     .advertise {
-      border-top: 4px solid var(--text);
-      border-bottom: 4px solid var(--text);
-      background: var(--white);
+      border-top: 1px solid var(--line);
+      background: var(--paper);
     }
 
     .advertise p {
@@ -218,7 +289,7 @@
       font-size: 22px;
       font-weight: 700;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
     footer {
@@ -229,6 +300,7 @@
       gap: 20px;
       font-weight: 800;
       text-transform: uppercase;
+      border-top: 1px solid var(--line);
     }
 
     footer a {
@@ -237,11 +309,11 @@
       margin-left: 18px;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 850px) {
       header {
-        padding: 16px 20px;
+        padding: 18px 22px;
         align-items: flex-start;
-        gap: 18px;
+        gap: 16px;
         flex-direction: column;
       }
 
@@ -253,13 +325,14 @@
       }
 
       .hero,
-      section,
-      .philosophy {
+      section {
         padding-left: 22px;
         padding-right: 22px;
       }
 
-      .hero h1 {
+      .hero h1,
+      .section-title,
+      .philosophy h2 {
         letter-spacing: -2px;
       }
 
@@ -268,8 +341,17 @@
         font-size: 20px;
       }
 
-      .yellow-line {
-        width: 85%;
+      .principle-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .principle {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .principle:last-child {
+        border-bottom: none;
       }
     }
   </style>
@@ -290,10 +372,10 @@
   <main>
 
     <section class="hero">
-      <h1>Everything is made of ingredients.</h1>
-      <div class="yellow-line"></div>
+      <div class="eyebrow">Context over fear</div>
+      <h1>Understand what things are made of.</h1>
       <p>
-        Simple, calm explanations for the ingredients inside everyday foods,
+        Simple explanations for the ingredients inside everyday foods,
         fruits, drinks, and products.
       </p>
 
@@ -303,13 +385,45 @@
       </div>
     </section>
 
+    <section class="principles">
+      <div class="section-label">How to use this site</div>
+      <h2 class="section-title">Research. Educate yourself. Keep living.</h2>
+
+      <div class="principle-grid">
+        <article class="principle">
+          <h3><span>Research.</span></h3>
+          <p>
+            Look at what ingredients actually are before judging them by name.
+            Many scientific sounding compounds occur naturally in everyday foods.
+          </p>
+        </article>
+
+        <article class="principle">
+          <h3><span>Educate yourself.</span></h3>
+          <p>
+            Everything is made of chemicals, including water, fruit, and your body.
+            The important question is context, amount, and purpose.
+          </p>
+        </article>
+
+        <article class="principle">
+          <h3><span>Keep living.</span></h3>
+          <p>
+            Learning about ingredients should make life clearer, not more stressful.
+            The goal is understanding, not anxiety.
+          </p>
+        </article>
+      </div>
+    </section>
+
     <section>
-      <h2 class="section-title">Start With The Basics</h2>
+      <div class="section-label">Browse examples</div>
+      <h2 class="section-title">Start with everyday things.</h2>
 
       <div class="carousel">
         <article class="card">
           <div>
-            <div class="number">01</div>
+            <div class="tag">Fruit</div>
             <h3>Banana</h3>
             <p>Water, natural sugars, fiber, potassium, vitamins, and aroma compounds.</p>
           </div>
@@ -318,7 +432,7 @@
 
         <article class="card">
           <div>
-            <div class="number">02</div>
+            <div class="tag">Fruit</div>
             <h3>Apple</h3>
             <p>Water, fructose, fiber, acids, antioxidants, and natural plant compounds.</p>
           </div>
@@ -327,7 +441,7 @@
 
         <article class="card">
           <div>
-            <div class="number">03</div>
+            <div class="tag">Drink</div>
             <h3>Coffee</h3>
             <p>Caffeine, acids, oils, minerals, aroma compounds, and water.</p>
           </div>
@@ -336,7 +450,7 @@
 
         <article class="card">
           <div>
-            <div class="number">04</div>
+            <div class="tag">Food</div>
             <h3>Bread</h3>
             <p>Flour, water, yeast, salt, starches, proteins, and fermentation compounds.</p>
           </div>
@@ -348,13 +462,14 @@
     <section class="philosophy">
       <h2>Chemical names are not automatically bad.</h2>
       <p>
-        Everything is made of chemicals, including fruit, water, and our bodies.
-        Our goal is to explain ingredients with context, not fear.
+        Everything is made of chemicals. That includes fruit, water, soil,
+        air, and us. Ingredients deserve context, not fear.
       </p>
     </section>
 
     <section>
-      <h2 class="section-title">Popular Ingredients</h2>
+      <div class="section-label">Ingredient library</div>
+      <h2 class="section-title">Popular ingredients.</h2>
 
       <div class="ingredient-grid">
         <div class="ingredient">Glucose</div>
@@ -367,7 +482,8 @@
     </section>
 
     <section class="advertise" id="advertise">
-      <h2 class="section-title">Advertise With Us</h2>
+      <div class="section-label">Partnerships</div>
+      <h2 class="section-title">Advertise with us.</h2>
       <p>
         Reach curious readers who want clear, trustworthy explanations about
         everyday ingredients, foods, and products.
